@@ -1,0 +1,34 @@
+---
+- hosts: all
+  user: root
+
+#  vars:
+#    users:
+#      - username: galya
+#        use_sudo: no
+
+#      - username: kolya
+#        use_sudo: yes
+
+  tasks:
+  - include_vars: users.yml
+
+  - name: Add users | create users, shell, home dirs
+    user: name={{ item.username }} shell=/bin/bash createhome=yes comment='create with ansible'
+    with_items: users
+
+  - name: Setup | authorized key upload
+    authorized_key: user={{ item.username }}
+      key="{{ lookup('file', 'pub_keys/{{ item.username }}.pub') }}"
+#      path='/home/{{ item.username }}/.ssh/authorized_keys'
+#      manage_dir=no
+    with_items: users
+
+  - name: Sudoers | update sudoers file and validate
+    lineinfile: "dest=/etc/sudoers
+      insertafter=EOF
+      line='{{ item.username }} ALL=(ALL) NOPASSWD: ALL'
+      regexp='^{{ item.username }} .*'
+      state=present"
+    when: '{{ item.use_sudo }} == True'
+    with_items: users
