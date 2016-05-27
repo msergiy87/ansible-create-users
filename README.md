@@ -8,7 +8,7 @@ User Settings
 ------------
 
 - Shell = /bin/bash
-- Add the public key from pub_keys dir
+- Add the public key in pub_keys dir (username.pub)
 - In users.yml specify that user should have the right to sudo or not
 
 Distros tested
