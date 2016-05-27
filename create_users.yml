@@ -15,14 +15,14 @@
 
   - name: Add users | create users, shell, home dirs
     user: name={{ item.username }} shell=/bin/bash createhome=yes comment='create with ansible'
-    with_items: users
+    with_items: '{{users}}'
 
   - name: Setup | authorized key upload
     authorized_key: user={{ item.username }}
       key="{{ lookup('file', 'pub_keys/{{ item.username }}.pub') }}"
 #      path='/home/{{ item.username }}/.ssh/authorized_keys'
 #      manage_dir=no
-    with_items: users
+    with_items: '{{users}}'
 
   - name: Sudoers | update sudoers file and validate
     lineinfile: "dest=/etc/sudoers
@@ -31,4 +31,4 @@
       regexp='^{{ item.username }} .*'
       state=present"
     when: '{{ item.use_sudo }} == True'
-    with_items: users
+    with_items: '{{users}}'
