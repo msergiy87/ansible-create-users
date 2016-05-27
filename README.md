@@ -12,7 +12,7 @@ User Settings
 Distros tested
 ------------
 
-Currently, this is only tested on Centos 6.7 as a client machine and Ubuntu 14.04 as a server machime.
+Currently, this is only tested on Ubuntu 14.04 as a client and server machime.
 
 Usage
 ------------
