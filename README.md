@@ -12,7 +12,7 @@ User Settings
 Distros tested
 ------------
 
-Currently, this is only tested on Ubuntu 14.04 as a client and server machime.
+Currently, this is only tested on Ubuntu 14.04 as a client and server machine. It should theoretically work on older versions of Ubuntu or Debian based systems.
 
 Usage
 ------------
