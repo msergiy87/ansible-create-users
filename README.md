@@ -16,6 +16,11 @@ Currently, this is only tested on Centos 6.7 as a client machine and Ubuntu 14.0
 
 Usage
 ------------
+- install ansible
+- create keys
+- configure client server authorized_keys
+- upload repository and change
+- run command
 
 ```
 ansible-playbook -i hosts create_users.yml
